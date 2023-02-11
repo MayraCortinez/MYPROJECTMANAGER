@@ -2,10 +2,13 @@
 
 ######
 .env BACK
-#SERVIDOR
+```
+#SERVIDOR 
 PORT=4000
-#MONGODB
+```
+#MONGODB 
 DB_CONNECTION=mongodb+srv://mayra:1234@cluster0.mhj1gk2.mongodb.net/?retryWrites=true&w=majority
+
 #JWT
 JWT=PMREACTJWT
 
