@@ -171,7 +171,7 @@ const storeProject = async (project) => {
             Toast.fire({
                 icon: "success",
                 title: data.msg,
-                position:"top-center"
+                position:"top-right"
                 });
             setProject(projectsUpdated)
         }else{
@@ -179,7 +179,7 @@ const storeProject = async (project) => {
             Toast.fire({
                 icon: "success",
                 title: data.msg,
-                position:"top-center"
+                position:"top-right"
                 });
             setProjects([...projects, data.project]); 
 

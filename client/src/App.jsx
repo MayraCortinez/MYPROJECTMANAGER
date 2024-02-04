@@ -24,8 +24,7 @@ function App() {
           <Routes>
 
              {/* Rutas Públicas  */}
-            <Route  path='/'  element={<AuthLayout/>}
-            >
+            <Route  path='/'  element={<AuthLayout/>} >
               <Route  index   element={<Login/>}
               />
               <Route  path='register'  element={<Register/>}

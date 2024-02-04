@@ -54,7 +54,7 @@ export const Login = () => {
         navigate('/projects');
   
       } catch (error) {
-          console.log(error);
+          console.error(error);
           handleShowAlert(error.response?.data.msg);
       }
 

@@ -25,7 +25,7 @@ export const Register = () => {
   const handleSubmit = async (e) => {
 
     e.preventDefault();
-    console.log(formValues)
+    // console.log(formValues)
 
     if ([name, email, password, password2].includes("")){
         handleShowAlert("No deben quedar campos vacíos");
@@ -68,7 +68,7 @@ export const Register = () => {
       reset()
 
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       handleShowAlert(error.response?.data.msg);
       reset();
       setSend(true)

@@ -7,7 +7,8 @@ var transport = nodemailer.createTransport({
     auth: {
       user: process.env.MAIL_USER,
       pass: process.env.MAIL_PASS
-    }
+    },
+    debug: true
   });
 
 
@@ -31,7 +32,7 @@ module.exports = {
                 console.log(info);
         
         } catch (error) {
-            console.error(error)
+                console.error('Error al enviar el correo:', error);
         }    
     },
 
@@ -51,7 +52,7 @@ module.exports = {
                 })
         
         } catch (error) {
-            console.error(error)
+                console.error('Error al enviar el correo:', error);
         }          
     }
 }
