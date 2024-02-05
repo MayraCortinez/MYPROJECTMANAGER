@@ -1,3 +1,5 @@
+console.log('iniciando aplicación');
+
 require('dotenv').config();
 const configEnv = require('../backend/configEnv');
 
@@ -5,6 +7,8 @@ const createError = require('http-errors');
 const express = require('express');
 const logger = require('morgan');
 const connectDB = require('./database/config');
+const path = require('path');
+
 
 const app = express();
 
@@ -55,5 +59,12 @@ app.use(function(err, req, res, next) {
     msg : err.message ? err.message : "Problemas Houston"
   })
 });
+
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, "../client/dist")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+});
+
 
 module.exports = app;
