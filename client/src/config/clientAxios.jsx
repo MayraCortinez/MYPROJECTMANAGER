@@ -1,8 +1,10 @@
-
 import axios from 'axios';
 
-export const clientAxios = axios.create( {
+const baseURL = import.meta.env.MODE === 'production'
+  ? import.meta.env.VITE_URL_BACKEND_PROD
+  : import.meta.env.VITE_URL_BACKEND;
 
-    baseURL : `${import.meta.env.VITE_URL_BACKEND}`
-  
-})
+export const clientAxios = axios.create({
+  baseURL: baseURL
+});
+
