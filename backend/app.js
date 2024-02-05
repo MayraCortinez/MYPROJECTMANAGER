@@ -19,15 +19,16 @@ app
   .use(logger('dev'))
   .use(express.json())
   .use(express.urlencoded({ extended: false }))
-  .use(cors( {
-    origin: function (origin, cb) {
-      if (configEnv.whiteList.includes(origin)) {
-        cb(null, true);
-      } else {
-        cb(new Error('Error de Cors'));
-      }
-    }
-  }));
+  
+  const corsOptions = {
+    origin: 'https://my-project-manager-frontend.onrender.com', // El origen permitido
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Los métodos permitidos
+    allowedHeaders: ['Content-Type', 'Authorization'], // Los encabezados permitidos
+    credentials: true // Si se permiten credenciales
+  };
+  
+  // Usar el middleware cors con las opciones
+  app.use(cors(corsOptions));
 
 
 // Routes
