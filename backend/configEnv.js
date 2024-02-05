@@ -12,4 +12,4 @@ const configEnv = {
   VITE_URL_BACKEND: isProduction ? process.env.VITE_URL_BACKEND_PROD : process.env.VITE_URL_BACKEND,
 };
 
-export default configEnv;
+module.exports = configEnv;

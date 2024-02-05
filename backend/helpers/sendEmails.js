@@ -1,5 +1,5 @@
 const nodemailer = require('nodemailer');
-import { configEnv } from '../configEnv';
+const configEnv = require('../configEnv');
 
 
 var transport = nodemailer.createTransport({
