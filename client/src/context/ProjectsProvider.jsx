@@ -1,7 +1,7 @@
 import React, { createContext, useState } from "react";
 import {useNavigate} from 'react-router-dom';
 import Swal from "sweetalert2";
-import clientAxios from '../config/clientAxios';
+import { clientAxios } from '../config/clientAxios';
 const ProjectsContext = createContext();
 
 
