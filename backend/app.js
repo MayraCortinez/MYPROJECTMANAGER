@@ -19,7 +19,7 @@ app
   .use(logger('dev'))
   .use(express.json())
   .use(express.urlencoded({ extended: false }))
-  .use(cors({
+  .use(cors(/* {
     origin: function (origin, cb) {
       if (configEnv.whiteList.includes(origin)) {
         cb(null, true);
@@ -27,7 +27,7 @@ app
         cb(new Error('Error de Cors'));
       }
     }
-  }));
+  } */));
 
 
 // Routes
