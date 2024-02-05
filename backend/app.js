@@ -1,4 +1,5 @@
 require('dotenv').config();
+const configEnv = require('../backend/configEnv');
 
 const createError = require('http-errors');
 const express = require('express');
@@ -10,16 +11,7 @@ const app = express();
 const cors = require('cors');
 app.options('/api/auth/send-token', cors());
 const checkToken = require('./middlewares/checkToken');
-const whiteList = [process.env.URL_FRONTEND, process.env.URL_BACKEND];
-/* const corsOptions = {
-  origin : function (origin, cb) {
-    if (whiteList.includes(origin)){
-      cb(null, true)
-    }else{
-      cb(new Error('Error de Cors'))
-    }
-  }
-} */
+
 
 connectDB();
 
@@ -27,7 +19,15 @@ app
   .use(logger('dev'))
   .use(express.json())
   .use(express.urlencoded({ extended: false }))
-  .use(cors())
+  .use(cors({
+    origin: function (origin, cb) {
+      if (configEnv.whiteList.includes(origin)) {
+        cb(null, true);
+      } else {
+        cb(new Error('Error de Cors'));
+      }
+    }
+  }));
 
 
 // Routes
