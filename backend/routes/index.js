@@ -3,7 +3,7 @@
 
  /* GET home page. */
  router.get('/', (req, res) => {
-  res.send('Bienvenido a la API del proyecto manager');
+  res.send('Welcome to My Project Manager');
 });
 
  module.exports = router;
