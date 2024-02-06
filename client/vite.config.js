@@ -6,9 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api': import.meta.env.MODE === 'production'
-        ? import.meta.env.VITE_URL_BACKEND_PROD
-        : import.meta.env.VITE_URL_BACKEND,
+      '/api': import.meta.env.VITE_URL_BACKEND_PROD
     },
   },
   //base: '/nombre-de-tu-app/'
