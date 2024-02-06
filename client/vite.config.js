@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api': import.meta.env.VITE_URL_BACKEND_PROD
+      '/api': 'https://backend-my-project-manager.onrender.com/'
     },
   },
   //base: '/nombre-de-tu-app/'
