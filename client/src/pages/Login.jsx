@@ -46,7 +46,7 @@ export const Login = () => {
           password
         })
 
-        //console.log(data);
+        console.log(data);
         
         setAuth(data.user);                               //envío la información al estado global. Cargo el id en el auth.
         sessionStorage.setItem('token', data.token);   

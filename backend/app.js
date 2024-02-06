@@ -56,7 +56,7 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500).json({
     ok : false,
-    msg : err.message ? err.message : "Problemas Houston"
+    msg : /* err.message ? err.message :  */"Problemas Houston"
   })
 });
 
