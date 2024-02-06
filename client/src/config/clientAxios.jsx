@@ -5,6 +5,5 @@ const baseURL = import.meta.env.MODE === 'production'
   : import.meta.env.VITE_URL_BACKEND;
 
 export const clientAxios = axios.create({
-  baseURL: 'https://backend-my-project-manager.onrender.com/'
+  baseURL,
 });
-
