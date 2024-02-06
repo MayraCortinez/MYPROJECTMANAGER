@@ -7,7 +7,7 @@ const createError = require('http-errors');
 const express = require('express');
 const logger = require('morgan');
 const connectDB = require('./database/config');
-const path = require('path');
+
 
 
 const app = express();
@@ -37,13 +37,15 @@ app
 
 // Routes
 app
+  .use('/', require('./routes/index'))
   .use('/api/auth', require('./routes/auth'))
   .use('/api/users', require('./routes/users'))
   .use('/api/projects', checkToken, require('./routes/projects'))
   .use('/api/tasks', checkToken, require('./routes/tasks')) 
 
-// catch 404 and forward to error handler
+// Middleware para manejar rutas no definidas
 app.use(function(req, res, next) {
+  console.log('Problemas en ruta no definida')
   next(createError(404));
 });
 
@@ -56,7 +58,7 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500).json({
     ok : false,
-    msg : /* err.message ? err.message :  */"Problemas Houston"
+    msg : err.message && "Problemas Houston"
   })
 });
 
