@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api': 'https://backend-my-project-manager.onrender.com/'
+      '/': 'https://backend-my-project-manager.onrender.com'
     },
   },
   //base: '/nombre-de-tu-app/'
