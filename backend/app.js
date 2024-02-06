@@ -13,7 +13,7 @@ const connectDB = require('./database/config');
 const app = express();
 
 const cors = require('cors');
-app.options('/api/auth/send-token', cors());
+app.options('/auth/send-token', cors());
 const checkToken = require('./middlewares/checkToken');
 
 
