@@ -1,6 +1,4 @@
 const nodemailer = require('nodemailer');
-const configEnv = require('../configEnv');
-
 
 var transport = nodemailer.createTransport({
     host: process.env.MAIL_HOST,
@@ -20,14 +18,14 @@ module.exports = {
         const {name, email, token} = user;
 
         try {
-
+            const frontendUrl = process.env.FRONTEND_URL || 'https://my-project-manager-frontend.onrender.com';
             const info = await transport.sendMail({
                 from : "Project Manager",
                 to : email,
                 subject : "Confirma tu cuenta en Project Manager",
                 text : "Confirma tu cuenta",
                 html : `<p> ${name}, para completar tu registro debes hacer click en el siguiente enlace : <p>
-                 <a href="https://my-project-manager-frontend.onrender.com/confirm/${token}"> Confirmar cuenta </a> `
+                <a href="${frontendUrl}/confirm/${token}"> Confirmar cuenta </a> `
                 })
 
                 console.log(info);
@@ -42,14 +40,14 @@ module.exports = {
         const {name, email, token} = user
 
         try {
-
+            const frontendUrl = process.env.FRONTEND_URL || 'https://my-project-manager-frontend.onrender.com';
             const info = await transport.sendMail({
                 from : "Project Manager",
                 to : email,
                 subject : "Reestablecer contraseña",
                 text : "Reestablecer contraseña en Project Manager",
                 html : `<p> ${name}, para reestablecer tu contraseña debes hacer click en el siguiente enlace : <p>
-                 <a href="https://my-project-manager-frontend.onrender.com/recover-password/${token}"> Reestablecer contraseña </a> `
+                 <a href="${frontendUrl}/recover-password/${token}"> Reestablecer contraseña </a> `
                 })
         
         } catch (error) {
