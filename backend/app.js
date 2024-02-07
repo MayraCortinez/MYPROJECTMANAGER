@@ -24,7 +24,7 @@ app
   .use(express.urlencoded({ extended: false }))
   
   const corsOptions = {
-    origin: 'https://client-mdhirr5xo-mayracortinez.vercel.app/', // El origen permitido
+    origin: 'https://client-six-bice.vercel.app', // El origen permitido
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Los métodos permitidos
     allowedHeaders: ['Content-Type', 'Authorization'], // Los encabezados permitidos
     credentials: true // Si se permiten credenciales

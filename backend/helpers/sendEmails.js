@@ -18,7 +18,7 @@ module.exports = {
         const {name, email, token} = user;
 
         try {
-            const urlFrontend = process.env.URL_FRONTEND || 'https://client-mdhirr5xo-mayracortinez.vercel.app/';
+            const urlFrontend = process.env.URL_FRONTEND || 'https://client-six-bice.vercel.app/';
             const info = await transport.sendMail({
                 from : "Project Manager",
                 to : email,
@@ -40,7 +40,7 @@ module.exports = {
         const {name, email, token} = user
 
         try {
-            const urlFrontend = process.env.URL_FRONTEND || 'https://client-mdhirr5xo-mayracortinez.vercel.app/';
+            const urlFrontend = process.env.URL_FRONTEND || 'https://client-six-bice.vercel.app/';
             const info = await transport.sendMail({
                 from : "Project Manager",
                 to : email,
