@@ -1,7 +1,7 @@
 console.log('iniciando aplicación');
 
 require('dotenv').config();
-const configEnv = require('../backend/configEnv');
+const path = require('path');
 
 const createError = require('http-errors');
 const express = require('express');
@@ -59,6 +59,10 @@ app.use(function(err, req, res, next) {
     ok : false,
     msg : err.message && "Problemas con el servidor"
   })
+});
+
+app.use('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../../client/dist/index.html'));
 });
 
 
