@@ -25,7 +25,7 @@ module.exports = {
                 subject : "Confirma tu cuenta en Project Manager",
                 text : "Confirma tu cuenta",
                 html : `<p> ${name}, para completar tu registro debes hacer click en el siguiente enlace : <p>
-                <a href="${frontendUrl}/confirm/${token}"> Confirmar cuenta </a> `
+                <a href="https://my-project-manager-frontend.onrender.com/confirm/${token}"> Confirmar cuenta </a> `
                 })
 
                 console.log(info);
@@ -47,7 +47,7 @@ module.exports = {
                 subject : "Reestablecer contraseña",
                 text : "Reestablecer contraseña en Project Manager",
                 html : `<p> ${name}, para reestablecer tu contraseña debes hacer click en el siguiente enlace : <p>
-                 <a href="${frontendUrl}/recover-password/${token}"> Reestablecer contraseña </a> `
+                 <a href="https://my-project-manager-frontend.onrender.com/recover-password/${token}"> Reestablecer contraseña </a> `
                 })
         
         } catch (error) {
