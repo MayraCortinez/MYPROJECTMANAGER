@@ -10,4 +10,7 @@ export default defineConfig({
       '/api': 'https://backend-kappa-one-37.vercel.app/',
     },
   },
+  routes: [
+    { "src": "/recover-password/(.*)", "dest": "recover-password/:token" }
+  ]
 });
