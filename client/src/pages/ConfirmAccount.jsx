@@ -27,8 +27,8 @@ export const ConfirmAccount = () => {
         const confirmAccount = async () => {
             try {
 
-             const url = `/auth/checked?token=${token}`
-             const { data } = await clientAxios.get(url)
+             //const url = `/auth/checked?token=${token}`
+             const {data} = await clientAxios.get(`/auth/checked?token=${token}`)
 
              Swal.fire({
                 position: 'center',

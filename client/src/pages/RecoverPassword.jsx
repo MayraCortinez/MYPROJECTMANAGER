@@ -48,8 +48,8 @@ export const RecoverPassword = () => {
         }
 
         try {
-            const url = `/auth/reset-password?token=${token}`;
-            const { data } = await clientAxios.post(url, { password });
+            //const url = `/auth/reset-password?token=${token}`;
+            const {data} = await clientAxios.post(`/auth/reset-password?token=${token}`, {password});
             Swal.fire({
                 position: 'center',
                 icon: 'success',
@@ -64,7 +64,7 @@ export const RecoverPassword = () => {
                 }
             });
         } catch (error) {
-            console.error(error);
+            console.error(error, 'error al cargar recoverPassword');
             handleShowAlert(error.response?.data.msg);
             setPassword("");
         }
