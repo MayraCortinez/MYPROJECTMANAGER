@@ -12,15 +12,15 @@ const connectDB = require('./database/config');
 const app = express();
 
 const cors = require('cors');
-const corsOptions = {
-  origin: 'https://client-six-bice.vercel.app', // El origen permitido
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Los métodos permitidos
-  allowedHeaders: ['Content-Type', 'Authorization'], // Los encabezados permitidos
-  credentials: true // Si se permiten credenciales
-};
+// const corsOptions = {
+//   origin: 'https://client-six-bice.vercel.app', // El origen permitido
+//   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Los métodos permitidos
+//   allowedHeaders: ['Content-Type', 'Authorization'], // Los encabezados permitidos
+//   credentials: true // Si se permiten credenciales
+// };
 
 // Usar el middleware cors con las opciones
-app.use(cors(corsOptions));
+app.use(cors());
 // app.options('/auth/send-token', cors());
 const checkToken = require('./middlewares/checkToken');
 
