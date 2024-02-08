@@ -11,7 +11,7 @@ router
     .post('/login', login )
     .get('/checked', checked )
     .post('/send-token', sendToken )
-    .route('/reset-password')
+    .route('/recover-password')
         .get(verifyToken)
         .post(changePassword)
 
