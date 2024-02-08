@@ -38,10 +38,15 @@ app
 // Routes
 app
   .use('/', require('./routes/index'))
-  .use('/auth', require('./routes/auth'))
-  .use('/users', require('./routes/users'))
-  .use('/projects', checkToken, require('./routes/projects'))
-  .use('/tasks', checkToken, require('./routes/tasks')) 
+  .use('/api/auth', require('./routes/auth'))
+  .use('/api/users', require('./routes/users'))
+  .use('/api/projects', checkToken, require('./routes/projects'))
+  .use('/api/tasks', checkToken, require('./routes/tasks')) 
+
+
+app.use('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../../client/dist/index.html'));
+  });
 
 // Middleware para manejar rutas no definidas
 app.use(function(req, res, next) {
@@ -60,10 +65,6 @@ app.use(function(err, req, res, next) {
     ok : false,
     msg : err.message && "Problemas con el servidor"
   })
-});
-
-app.use('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../../client/dist/index.html'));
 });
 
 

@@ -4,7 +4,7 @@ const router = express.Router();
 const { register, verifyToken, login, changePassword, checked, sendToken } = require('../controllers/authController')
   
 
-/*auth */
+/*api/auth */
 
 router
     .post('/register', register )

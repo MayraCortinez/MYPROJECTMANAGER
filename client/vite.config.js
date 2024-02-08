@@ -7,8 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/': 'https://backend-kappa-one-37.vercel.app/',
-      '/auth': 'https://backend-kappa-one-37.vercel.app/',
-      '/projects' : 'https://backend-kappa-one-37.vercel.app/'
+      '/api': 'https://backend-kappa-one-37.vercel.app/',
     },
   },
 });
