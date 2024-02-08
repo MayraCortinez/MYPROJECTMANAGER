@@ -27,10 +27,11 @@ export const RecoverPassword = () => {
     useEffect(() => {
         const checkToken = async () => {
             try {
+              console.log("Antes de la llamada a la API para verificar el token");
                 setSend(true)
                 const url = `/auth/reset-password?token=${token}`
                 const { data } = await clientAxios.get(url)
-                console.log(data.msg)
+                console.log("Después de la llamada a la API para verificar el token", data.msg)
                 setTokenChecked(true);
                 setSend(false);
             } catch (error) {

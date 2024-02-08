@@ -11,6 +11,6 @@ export default defineConfig({
     },
   },
   routes: [
-    { "src": "/recover-password/(.*)", "dest": "recover-password/:token" }
+    { "src": "/recover-password/(.*)", "dest": "recover-password" }
   ]
 });
