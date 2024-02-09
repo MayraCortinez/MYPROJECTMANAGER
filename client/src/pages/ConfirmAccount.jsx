@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { clientAxios } from '../config/clientAxios';
 import { Alert } from '../components/Alert';
 import Swal from 'sweetalert2';
 
 export const ConfirmAccount = () => {
-  const location = useLocation();
   const navigate = useNavigate();
   const [alert, setAlert] = useState({});
 
@@ -19,14 +18,14 @@ export const ConfirmAccount = () => {
   };
 
   useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    const token = searchParams.get('token');
+    const {token} = useParams();
 
     const confirmAccount = async () => {
       try {
-        url='https://backend-kappa-one-37.vercel.app/'
-        // Realiza la solicitud GET a la ruta correcta (checked en este caso)
-        const response = await url.get(`/api/checked?token=${token}`);
+
+        if (token) {
+          const response = await fetch(`/api/auth/checked/${token}`);
+          const data = await response.json();
 
         Swal.fire({
           position: 'center',
@@ -40,6 +39,9 @@ export const ConfirmAccount = () => {
             navigate('/');
           }
         });
+        console.log(data);
+      }
+
       } catch (error) {
         console.error('Error al confirmar la cuenta:', error);
         if (error.isAxiosError && !error.response) {
@@ -50,13 +52,8 @@ export const ConfirmAccount = () => {
       }
     };
 
-    // Verifica si hay un token en la URL antes de realizar la confirmación
-    if (token) {
-      confirmAccount();
-    } else {
-      handleShowAlert('Token de confirmación no encontrado en la URL');
-    }
-  }, [location.search, navigate]);
+    confirmAccount();
+  }, [token]);
 
   return (
     <>

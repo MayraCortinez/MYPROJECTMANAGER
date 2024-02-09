@@ -101,7 +101,7 @@ module.exports = {
         }
     },
     checked : async (req, res) => {
-        const {token} = req.query //http://localhost:4000/api/auth/checked?token=jhbjhhjbj  
+        const {token} = req.params; //http://localhost:4000/api/auth/checked?token=jhbjhhjbj  
 
         try {
 
