@@ -18,7 +18,7 @@ import { ProjectsProvider } from './context/ProjectsProvider'
 function App() {
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/">
       <AuthProvider>
       <ProjectsProvider>
           <Routes>

@@ -24,8 +24,9 @@ export const ConfirmAccount = () => {
 
     const confirmAccount = async () => {
       try {
+        url='https://backend-kappa-one-37.vercel.app/'
         // Realiza la solicitud GET a la ruta correcta (checked en este caso)
-        const response = await clientAxios.get(`/api/checked?token=${token}`);
+        const response = await url.get(`/api/checked?token=${token}`);
 
         Swal.fire({
           position: 'center',
