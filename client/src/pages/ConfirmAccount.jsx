@@ -4,7 +4,7 @@ import { clientAxios } from '../config/clientAxios';
 import { Alert } from '../components/Alert';
 import Swal from 'sweetalert2';
 
-const ConfirmAccount = () => {
+export const ConfirmAccount = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [alert, setAlert] = useState({});
@@ -93,4 +93,3 @@ const ConfirmAccount = () => {
   );
 };
 
-export default ConfirmAccount;
