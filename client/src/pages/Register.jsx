@@ -46,7 +46,7 @@ export const Register = () => {
 
       setSend (true);
 
-      const {data} = await clientAxios.post('/auth/register',{
+      const {data} = await clientAxios.post('/api/auth/register',{
         name,
         email,
         password

@@ -26,7 +26,7 @@ export const RecoverPassword = () => {
             try {
                 console.log("Antes de la llamada a la API para verificar el token");
                 setSend(true);
-                const url = `/auth/reset-password?token=${token}`;
+                const url = `/api/auth/reset-password?token=${token}`;
                 const { data } = await clientAxios.get(url);
                 console.log("Después de la llamada a la API para verificar el token", data.msg);
                 setTokenChecked(true);
@@ -49,7 +49,7 @@ export const RecoverPassword = () => {
 
         try {
             //const url = `/auth/reset-password?token=${token}`;
-            const {data} = await clientAxios.post(`/auth/reset-password?token=${token}`, {password});
+            const {data} = await clientAxios.post(`/api/auth/reset-password?token=${token}`, {password});
             Swal.fire({
                 position: 'center',
                 icon: 'success',

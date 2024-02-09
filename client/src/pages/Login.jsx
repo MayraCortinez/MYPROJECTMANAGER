@@ -41,7 +41,7 @@ export const Login = () => {
 
       try {
         
-        const { data } = await clientAxios.post('/auth/login',{
+        const { data } = await clientAxios.post('/api/auth/login',{
           email, 
           password
         })
