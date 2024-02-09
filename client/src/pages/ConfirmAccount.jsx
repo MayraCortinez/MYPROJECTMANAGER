@@ -44,12 +44,17 @@ export const ConfirmAccount = () => {
               })
 
             } catch (error) {
-                console.error(error)
-                handleShowAlert(error.response?.data.msg)
+                console.error('Error al confirmar la cuenta:', error);
+
+                if (axios.isAxiosError(error) && !error.response) {
+                    handleShowAlert('Error de conexión al servidor. Por favor, intenta de nuevo más tarde.');
+                } else {
+                    handleShowAlert(error.response?.data.msg || 'Error al confirmar la cuenta');
+                }
             }
         }
         confirmAccount();
-    }, []);
+    }, [clientAxios]);
     
   
 
