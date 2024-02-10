@@ -34,7 +34,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Rutas
-app.use('/', require('./routes/index'));
+app.get('/', (req, res) => {
+  res.send("Welcome to My Project Manager")
+})
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/users', require('./routes/users'));
 
