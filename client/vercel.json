@@ -14,10 +14,6 @@
     {
       "src": "/api/auth/reset-password/(.*)",
       "dest": "/api/auth/reset-password?token=$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/src/$1" 
     }
   ]
 }
