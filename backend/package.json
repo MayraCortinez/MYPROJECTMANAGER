@@ -2,6 +2,10 @@
   "name": "myprojectmanager",
   "version": "0.0.0",
   "private": true,
+  "engines": {
+    "node": "20.11.0" 
+  },
+  "main": "app.js",
   "scripts": {
     "start": "node ./bin/www",
     "server-dev": "nodemon ./bin/www",
