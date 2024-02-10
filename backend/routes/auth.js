@@ -2,18 +2,16 @@ const express = require('express');
 const router = express.Router();
 
 const { register, verifyToken, login, changePassword, checked, sendToken } = require('../controllers/authController')
-  
 
-/*api/auth */
+/* /api/auth */
 
 router
     .post('/register', register )
     .post('/login', login )
-    .get('/checked/:token', checked )
+    .get('/checked', checked )
     .post('/send-token', sendToken )
-    .route('/recover-password')
+    .route('/reset-password')
         .get(verifyToken)
         .post(changePassword)
-
 
 module.exports = router;

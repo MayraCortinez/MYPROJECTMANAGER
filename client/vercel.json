@@ -1,9 +1,23 @@
 {
-    "version": 2,
-    "builds": [
-        { "src": "package.json", "use": "@vercel/static-build" }
-    ],
-    "routes": [
-      { "src": "/", "dest": "index.html" }
-    ]
-  }
+  "version": 2,
+  "builds": [
+    {
+      "src": "src", 
+      "use": "@vercel/node" 
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/auth/checked/(.*)",
+      "dest": "/api/auth/checked?token=$1"
+    },
+    {
+      "src": "/api/auth/reset-password/(.*)",
+      "dest": "/api/auth/reset-password?token=$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/src/$1" 
+    }
+  ]
+}
