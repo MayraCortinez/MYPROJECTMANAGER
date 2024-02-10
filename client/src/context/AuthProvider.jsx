@@ -26,7 +26,7 @@ export const AuthProvider = ({children}) => {
             }
 
             try {
-                const {data} = await clientAxios.get('/users/profile', config);
+                const {data} = await clientAxios.get('/api/users/profile', config);
                 //console.log(data.user)
                 setAuth(data.user);
                 

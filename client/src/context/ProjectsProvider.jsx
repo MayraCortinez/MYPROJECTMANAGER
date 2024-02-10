@@ -97,7 +97,7 @@ const getProjects = async () => {
 
         if (!token) return null;
 
-        const { data } = await clientAxios.get("/projects", {
+        const { data } = await clientAxios.get("/api/projects", {
             headers: {
             "Content-Type": "application/json",
             Authorization: token,
@@ -129,7 +129,7 @@ const getProject = async (id) => {
             Authorization: token,
         }}
 
-        const { data } = await clientAxios.get(`/projects/${id}`, config); 
+        const { data } = await clientAxios.get(`/api/projects/${id}`, config); 
 
 
     setProject(data.project);
@@ -161,7 +161,7 @@ const storeProject = async (project) => {
 
         if(project.id){
 
-            const { data } = await clientAxios.put( `/projects/${project.id}`, project, config);
+            const { data } = await clientAxios.put( `/api/projects/${project.id}`, project, config);
             const projectsUpdated = projects.map(projectState => {
                 if(projectState._id === data.project._id){
                     return data.project
@@ -175,7 +175,7 @@ const storeProject = async (project) => {
                 });
             setProject(projectsUpdated)
         }else{
-            const { data } = await clientAxios.post( '/projects', project, config);
+            const { data } = await clientAxios.post( '/api/projects', project, config);
             Toast.fire({
                 icon: "success",
                 title: data.msg,
@@ -218,7 +218,7 @@ const deleteProject = async (id) => {
             Authorization: token,
             },
         };
-        const { data } = await clientAxios.delete( `/projects/${id}`,config);
+        const { data } = await clientAxios.delete( `/api/projects/${id}`,config);
         const projectsFiltered = projects.filter(project => project._id !== id);
 
         setProjects(projectsFiltered)
