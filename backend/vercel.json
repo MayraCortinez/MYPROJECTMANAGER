@@ -1,8 +1,15 @@
 {
-    "routes": [
-      {
-        "src": "/api/auth/checked/(.*)",
-        "dest": "/api/auth/checked?token=$1"
-      }
-    ]
+  "version": 2,
+  "builds": [
+    {
+      "src": "app.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "app.js"
+    }
+  ]
 }
