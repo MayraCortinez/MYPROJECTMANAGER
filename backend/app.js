@@ -38,7 +38,7 @@ app.get('/', (req, res) => {
   res.send("Welcome to My Project Manager")
 })
 app.use('/api/auth', require('./routes/auth'));
-app.use('/api/users', require('./routes/users'));
+app.use('/api/users', checkToken, require('./routes/users'));
 
 // Middleware de verificación de token antes de rutas protegidas
 app.use('/api/projects', checkToken, require('./routes/projects'));
