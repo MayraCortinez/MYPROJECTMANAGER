@@ -68,7 +68,7 @@ export const Register = () => {
       reset()
 
     } catch (error) {
-      // console.log(error);
+      console.log(error);
       handleShowAlert(error.response?.data.msg);
       reset();
       setSend(true)
