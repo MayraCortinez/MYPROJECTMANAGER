@@ -3,10 +3,6 @@
       {
         "src": "/api/auth/checked/(.*)",
         "dest": "/api/auth/checked?token=$1"
-      },
-      {
-        "src": "/(.*)",
-        "dest": "/app.js" 
       }
     ]
 }
