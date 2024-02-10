@@ -2,12 +2,12 @@
   "version": 2,
   "routes": [
     {
-      "src": "/auth/checked/(.*)",
-      "dest": "/auth/checked?token=$1"
+      "src": "/api/auth/checked/(.*)",
+      "dest": "/api/auth/checked?token=$1"
     },
     {
-      "src": "/auth/reset-password/(.*)",
-      "dest": "/auth/reset-password?token=$1"
+      "src": "/api/auth/reset-password/(.*)",
+      "dest": "/api/auth/reset-password?token=$1"
     }
   ]
 }
