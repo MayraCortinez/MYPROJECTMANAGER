@@ -28,7 +28,7 @@ export const RecoverPassword = () => {
         const checkToken = async () => {
             try {
                 setSend(true)
-                const url = `/api/auth/reset-password?token=${token}`
+                const url = `/api/auth/reset-password/${token}`
                 const { data } = await clientAxios.get(url)
                 console.log(data.msg)
                 setTokenChecked(true);
@@ -39,7 +39,7 @@ export const RecoverPassword = () => {
             }
         }
         checkToken()
-    }, []);
+    }, [token]);
 
     const handleSubmit = async (e) => {
 

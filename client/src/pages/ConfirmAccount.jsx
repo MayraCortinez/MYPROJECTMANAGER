@@ -49,7 +49,7 @@ export const ConfirmAccount = () => {
             }
         }
         confirmAccount();
-    }, []);
+    }, [token]);
     
   
 

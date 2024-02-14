@@ -101,7 +101,7 @@ module.exports = {
         }
     },
     checked : async (req, res) => {
-        const {token} = req.query //http://localhost:4000/api/auth/checked?token=jhbjhhjbj  
+        const {token} = req.params //http://localhost:4000/api/auth/checked?token=jhbjhhjbj  
 
         try {
 
@@ -163,7 +163,7 @@ module.exports = {
 
         try {
 
-            const {token} = req.query;
+            const {token} = req.params;
     
             const user = await User.findOne({
                 token
@@ -185,7 +185,7 @@ module.exports = {
 
         try {
 
-            const {token} = req.query;
+            const {token} = req.params;
             
             const {password} = req.body;
                 
