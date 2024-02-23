@@ -100,11 +100,10 @@ export const Register = () => {
         noValidate
         onSubmit={handleSubmit}
       >
-        <div className="my-5">
+        <div className={`my-5 ${alert.msg && 'border-red-500'}`}>
           <label
             htmlFor="name"
-            className="text-gray-400 block font-
-bold"
+            className="text-gray-400 block font-bold"
           >
             Usuario
           </label>

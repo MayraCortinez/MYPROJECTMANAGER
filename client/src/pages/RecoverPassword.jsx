@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {Link, useNavigate, useParams} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import { Alert } from '../components/Alert';
 import { clientAxios } from '../config/clientAxios';
 import Swal from 'sweetalert2';
@@ -11,7 +11,6 @@ export const RecoverPassword = () => {
     const [password, setPassword] = useState("");
     const [tokenChecked, setTokenChecked] = useState(false);
     const [send, setSend] = useState(false);
-    const {token} = useParams();
     const navigate = useNavigate();
 
 
@@ -28,7 +27,7 @@ export const RecoverPassword = () => {
         const checkToken = async () => {
             try {
                 setSend(true)
-                const url = `/api/auth/reset-password/${token}`
+                const url = '/api/auth/reset-password'
                 const { data } = await clientAxios.get(url)
                 console.log(data.msg)
                 setTokenChecked(true);
@@ -51,7 +50,7 @@ export const RecoverPassword = () => {
         }
 
         try {
-            const url = `/api/auth/reset-password?token=${token}`
+            const url = `/api/auth/reset-password`
             const { data } = await clientAxios.post(url, {password});
             Swal.fire({
                 position: 'center',

@@ -1,17 +1,17 @@
 import React, {useEffect, useState} from 'react';
+import { useCookies } from 'react-cookie';
 import { clientAxios } from "../config/clientAxios";
-import {Link, useParams, useNavigate} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {Alert} from '../components/Alert';
 import Swal from 'sweetalert2';
 
 export const ConfirmAccount = () => {
 
-   
-    const {token} = useParams();
-
     const [alert, setAlert] = useState({});
 
     const navigate = useNavigate();
+
+    const [cookies] = useCookies(['cookie-token']);
 
     const handleShowAlert = (msg) => {
         setAlert({
@@ -25,10 +25,13 @@ export const ConfirmAccount = () => {
     useEffect(() => {
       
         const confirmAccount = async () => {
-            try {
-
-             const url = `/api/auth/checked/${token}`
-             const { data } = await clientAxios.get(url)
+            try {  
+             const url = '/api/auth/checked'
+             const { data } = await clientAxios.get(url, {
+                headers: {
+                    Authorization : `Bearer ${cookies['cookie-token']}`,
+                }
+             })
 
              Swal.fire({
                 position: 'center',
@@ -49,7 +52,7 @@ export const ConfirmAccount = () => {
             }
         }
         confirmAccount();
-    }, [token]);
+    }, [cookies, navigate]);
     
   
 
