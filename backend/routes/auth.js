@@ -8,9 +8,9 @@ const { register, verifyToken, login, changePassword, checked, sendToken } = req
 router
     .post('/register', register )
     .post('/login', login )
-    .get('/checked/:token', checked )
+    .get('/checked', checked )
     .post('/send-token', sendToken )
-        .get('/reset-password/:token', verifyToken)
+        .get('/reset-password', verifyToken)
         .post('/reset-password', changePassword)
 
 module.exports = router;

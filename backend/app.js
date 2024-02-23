@@ -1,12 +1,13 @@
 console.log('Iniciando aplicación');
 
 require('dotenv').config();
-const path = require('path');
 
+const path = require('path');
 const createError = require('http-errors');
 const express = require('express');
 const logger = require('morgan');
 const connectDB = require('./database/config');
+const cookieMiddleware = require('./middlewares/cookieMiddleware');
 
 const app = express();
 
@@ -22,6 +23,9 @@ const cors = require('cors');
 // Usar el middleware cors con las opciones
 app.use(cors());
 // app.options('/auth/send-token', cors());
+
+app.use(cookieParser());
+app.use(cookieMiddleware);
 
 const checkToken = require('./middlewares/checkToken');
 connectDB();

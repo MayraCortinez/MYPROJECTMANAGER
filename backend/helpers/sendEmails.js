@@ -26,7 +26,7 @@ module.exports = {
                 subject : "Confirma tu cuenta en Project Manager",
                 text : "Confirma tu cuenta",
                 html : `<p> ${name}, para completar tu registro debes hacer click en el siguiente enlace : <p>
-                 <a href="${process.env.URL_FRONTEND}/confirm/${token}"> Confirmar cuenta </a> `
+                 <a href="${process.env.URL_FRONTEND}/confirm"> Confirmar cuenta </a> `
                 })
 
                 console.log(info);
@@ -48,7 +48,7 @@ module.exports = {
                 subject : "Reestablecer contraseña",
                 text : "Reestablecer contraseña en Project Manager",
                 html : `<p> ${name}, para reestablecer tu contraseña debes hacer click en el siguiente enlace : <p>
-                 <a href="${process.env.URL_FRONTEND}/recover-password/${token}"> Reestablecer contraseña </a> `
+                 <a href="${process.env.URL_FRONTEND}/recover-password"> Reestablecer contraseña </a> `
                 })
         
         } catch (error) {

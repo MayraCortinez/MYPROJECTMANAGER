@@ -36,6 +36,13 @@ module.exports = {
             user = new User(req.body);
             user.token = token;
 
+            // Configura la cookie con el token
+            const cookieOptions = {
+                httpOnly: true,
+            };
+  
+            res.setHeader('Set-Cookie', cookie.serialize('cookie-token', token, cookieOptions));
+
             const userStore = await user.save();
 
             confirmRegister ({
@@ -101,7 +108,7 @@ module.exports = {
         }
     },
     checked : async (req, res) => {
-        const {token} = req.params //http://localhost:4000/api/auth/checked?token=jhbjhhjbj  
+        const token = req.cookies['cookie-token']; 
 
         try {
 
@@ -141,6 +148,14 @@ module.exports = {
             
             user.token = token;
 
+            // Configura la cookie con el token
+            const cookieOptions = {
+            httpOnly: true,
+            // Otras opciones según tus necesidades
+            };
+  
+            res.setHeader('Set-Cookie', cookie.serialize('cookie-token', token, cookieOptions));
+
             const userStore = await user.save();
 
             await forgetPassword({
@@ -159,6 +174,7 @@ module.exports = {
             errorResponse(res, error, 'SendToken')
         }
     },
+
     verifyToken : async (req, res) => {
 
         try {
@@ -185,7 +201,7 @@ module.exports = {
 
         try {
 
-            const {token} = req.params;
+            const token = req.cookies['cookie-token'];
             
             const {password} = req.body;
                 
