@@ -7,6 +7,7 @@ const createError = require('http-errors');
 const express = require('express');
 const logger = require('morgan');
 const connectDB = require('./database/config');
+const cookieParser = require('cookie-parser');
 const cookieMiddleware = require('./middlewares/cookieMiddleware');
 
 const app = express();
