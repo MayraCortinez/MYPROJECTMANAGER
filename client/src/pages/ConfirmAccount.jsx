@@ -30,7 +30,8 @@ export const ConfirmAccount = () => {
              const { data } = await clientAxios.get(url, {
                 headers: {
                     Authorization : `Bearer ${cookies['cookie-token']}`,
-                }
+                },
+                withCredentials: true
              })
 
              Swal.fire({
