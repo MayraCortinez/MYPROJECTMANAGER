@@ -38,6 +38,15 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// Configurar ruta de proxy
+const apiProxy = createProxyMiddleware('/api', {
+  target: 'https://backend-kappa-one-37.vercel.app',
+  changeOrigin: true,
+  pathRewrite: {
+    '^/api': '', // Eliminar prefijo '/api' al reenviar la solicitud
+  },
+});
+
 // Rutas
 app.get('/', (req, res) => {
   res.send("Welcome to My Project Manager")
@@ -49,14 +58,6 @@ app.use('/api/users', checkToken, require('./routes/users'));
 app.use('/api/projects', checkToken, require('./routes/projects'));
 app.use('/api/tasks', checkToken, require('./routes/tasks'));
 
-// Configurar ruta de proxy
-const apiProxy = createProxyMiddleware('/api', {
-  target: 'https://backend-kappa-one-37.vercel.app',
-  changeOrigin: true,
-  pathRewrite: {
-    '^/api': '', // Eliminar prefijo '/api' al reenviar la solicitud
-  },
-});
 
 app.use('/api', apiProxy);
 

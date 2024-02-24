@@ -1,7 +1,7 @@
-// config/clientAxios.js
+import axios from 'axios';
 
-import Axios from 'axios';
+export const clientAxios = axios.create( {
 
-export const clientAxios = Axios.create();
-
-
+    baseURL : `${import.meta.env.VITE_URL_BACKEND}`
+  
+})

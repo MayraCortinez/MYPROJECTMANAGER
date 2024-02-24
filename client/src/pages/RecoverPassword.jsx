@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Alert } from '../components/Alert';
-import { clientAxios } from '../config/clientAxios';
+import { clientAxios } from '../config/clientAxios.js';
 import Swal from 'sweetalert2';
 import { useCookies } from 'react-cookie'; 
 
