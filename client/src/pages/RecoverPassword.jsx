@@ -30,7 +30,6 @@ export const RecoverPassword = () => {
         const { data } = await clientAxios.get(url, {
           headers: {
             Authorization: `Bearer ${cookies['cookie-token']}`,
-            withCredentials: true,
           },
         });
         console.log(data.msg);
@@ -42,7 +41,7 @@ export const RecoverPassword = () => {
       }
     };
     checkToken();
-  }, [cookies]);  // Asegúrate de incluir cookies como dependencia
+  }, [cookies]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
