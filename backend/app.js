@@ -13,17 +13,17 @@ const cookieMiddleware = require('./middlewares/cookieMiddleware');
 const app = express();
 
 const cors = require('cors');
-// Descomentar y ajustar según tus necesidades
-// const corsOptions = {
-//   origin: 'https://client-six-bice.vercel.app',
-//   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-//   allowedHeaders: ['Content-Type', 'Authorization'],
-//   credentials: true
-// };
 
-// Usar el middleware cors con las opciones
-app.use(cors());
-// app.options('/auth/send-token', cors());
+const corsOptions = {
+  origin: 'https://client-six-bice.vercel.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+};
+
+
+app.use(cors(corsOptions));
+app.options('*', cors());
 
 app.use(cookieParser());
 app.use(cookieMiddleware);
