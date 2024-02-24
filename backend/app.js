@@ -42,9 +42,9 @@ app.use(express.urlencoded({ extended: false }));
 const apiProxy = createProxyMiddleware('/api', {
   target: 'https://backend-kappa-one-37.vercel.app',
   changeOrigin: true,
-  pathRewrite: {
-    '^/api': '', // Eliminar prefijo '/api' al reenviar la solicitud
-  },
+  // pathRewrite: {
+  //   '^/api': '', // Eliminar prefijo '/api' al reenviar la solicitud
+  // },
 });
 
 // Rutas
