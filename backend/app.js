@@ -9,6 +9,7 @@ const logger = require('morgan');
 const connectDB = require('./database/config');
 const cookieParser = require('cookie-parser');
 const cookieMiddleware = require('./middlewares/cookieMiddleware');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const app = express();
 
@@ -17,7 +18,6 @@ const cors = require('cors');
 const corsOptions = {
   origin: 'https://client-six-bice.vercel.app',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 };
 
@@ -48,6 +48,17 @@ app.use('/api/users', checkToken, require('./routes/users'));
 // Middleware de verificación de token antes de rutas protegidas
 app.use('/api/projects', checkToken, require('./routes/projects'));
 app.use('/api/tasks', checkToken, require('./routes/tasks'));
+
+// Configurar ruta de proxy
+const apiProxy = createProxyMiddleware('/api', {
+  target: 'https://backend-kappa-one-37.vercel.app',
+  changeOrigin: true,
+  pathRewrite: {
+    '^/api': '', // Eliminar prefijo '/api' al reenviar la solicitud
+  },
+});
+
+app.use('/api', apiProxy);
 
 // Enrutamiento para manejar rutas no definidas
 app.use('*', (req, res) => {
