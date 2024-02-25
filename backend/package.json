@@ -11,7 +11,8 @@
     "server-dev": "nodemon ./bin/www",
     "client-dev": "cd client && npm run dev",
     "client-build": "cd client && npm run build",
-    "dev": "concurrently \"npm run server-dev \" \" npm run client-dev\""
+    "dev": "concurrently \"npm run server-dev \" \" npm run client-dev\"",
+    "send-mail-test": "node sendMailTest.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -27,7 +28,7 @@
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.9.0",
     "morgan": "~1.9.1",
-    "nodemailer": "^6.9.9",
+    "nodemailer": "^6.9.10",
     "nodemon": "^2.0.20",
     "path": "^0.12.7"
   }

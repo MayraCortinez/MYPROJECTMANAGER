@@ -1,5 +1,5 @@
 const nodemailer = require('nodemailer');
-
+require('dotenv').config();
 
 var transport = nodemailer.createTransport({
     host: process.env.MAIL_HOST,
@@ -8,6 +8,7 @@ var transport = nodemailer.createTransport({
       user: process.env.MAIL_USER,
       pass: process.env.MAIL_PASS
     },
+    secure: false,
     debug: true
   });
 
@@ -16,7 +17,7 @@ module.exports = {
 
     confirmRegister : async (user) => {
 
-        const {name, email, token} = user;
+        const {name, email} = user;
 
         try {
 
@@ -38,7 +39,7 @@ module.exports = {
 
     forgetPassword : async (user) => {
         
-        const {name, email, token} = user
+        const {name, email} = user
 
         try {
 
