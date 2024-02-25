@@ -1,4 +1,4 @@
-const nodemailer = require('nodemailer');
+/* const nodemailer = require('nodemailer');
 require('dotenv').config();
 
 const mailPorts = process.env.MAIL_PORT.split(',').map(Number);
@@ -32,4 +32,17 @@ async function sendMail() {
   }
 }
 
-sendMail();
+sendMail(); */
+
+
+const sendEmails = require('./helpers/sendEmails'); 
+
+// Ejemplo para probar la función confirmRegister
+const testUser = {
+  name: 'Test User',
+  email: 'test@example.com',
+};
+
+sendEmails.forgetPassword(testUser)
+  .then(() => console.log('Correo de confirmación enviado con éxito'))
+  .catch((error) => console.error('Error al enviar correo de confirmación:', error));

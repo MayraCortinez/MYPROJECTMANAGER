@@ -31,9 +31,9 @@ function App() {
               />
               <Route  path='forget-password'  element={<ForgetPassword/>}
               />
-              <Route  path='recover-password/:token'  element={<RecoverPassword/>}
+              <Route  path='recover-password'  element={<RecoverPassword/>}
               />
-              <Route  path='confirm/:token'  element={<ConfirmAccount/>}
+              <Route  path='confirm'  element={<ConfirmAccount/>}
               />
               <Route  path='*'  element={<NotFound/>}
               />

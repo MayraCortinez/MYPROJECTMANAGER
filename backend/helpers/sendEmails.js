@@ -38,6 +38,7 @@ module.exports = {
         break; // Si tiene éxito, salir del bucle
       } catch (error) {
         console.error(`Error al intentar con el puerto ${port}:`, error.message);
+        break;
       }
     }
   },
@@ -63,6 +64,7 @@ module.exports = {
         break; // Si tiene éxito, salir del bucle
       } catch (error) {
         console.error(`Error al intentar con el puerto ${port}:`, error.message);
+        break;
       }
     }
   }
