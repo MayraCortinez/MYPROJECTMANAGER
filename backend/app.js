@@ -36,7 +36,7 @@ app.use(cookieParser());
 app.use(cookieMiddleware);
 
 // Rutas
-app.get('/', (req, res) => {
+app.get('/api/', (req, res) => {
   res.send("Welcome to My Project Manager");
 });
 
