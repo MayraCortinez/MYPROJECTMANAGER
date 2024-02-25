@@ -153,7 +153,6 @@ module.exports = {
             // Configura la cookie con el token
             const cookieOptions = {
             httpOnly: true,
-            // Otras opciones según tus necesidades
             };
   
             res.setHeader('Set-Cookie', cookie.serialize('cookie-token', token, cookieOptions));

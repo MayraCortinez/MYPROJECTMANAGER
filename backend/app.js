@@ -10,26 +10,19 @@ const connectDB = require('./database/config');
 const cookieParser = require('cookie-parser');
 const cookieMiddleware = require('./middlewares/cookieMiddleware');
 const { createProxyMiddleware } = require('http-proxy-middleware');
+const cors = require('cors');
 
 const app = express();
 
-const cors = require('cors');
+app.use(cors());
 
-const corsOptions = {
-  origin: 'https://client-six-bice.vercel.app',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true
-};
+// Configuración del proxy para redirigir solicitudes al backend
+const apiProxy = createProxyMiddleware('/api', {
+  target: 'https://backend-kappa-one-37.vercel.app',
+  changeOrigin: true,
+});
 
-
-app.use(cors(corsOptions));
-app.options('*', cors());
-
-app.use(cookieParser());
-app.use(cookieMiddleware);
-
-const checkToken = require('./middlewares/checkToken');
-connectDB();
+app.use(apiProxy);
 
 // Middleware de registro de solicitudes
 app.use(logger('dev'));
@@ -38,28 +31,19 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Configurar ruta de proxy
-const apiProxy = createProxyMiddleware('/api', {
-  target: 'https://backend-kappa-one-37.vercel.app',
-  changeOrigin: true,
-  // pathRewrite: {
-  //   '^/api': '', // Eliminar prefijo '/api' al reenviar la solicitud
-  // },
-});
+// Middleware de manejo de cookies
+app.use(cookieParser());
+app.use(cookieMiddleware);
 
 // Rutas
 app.get('/', (req, res) => {
-  res.send("Welcome to My Project Manager")
-})
+  res.send("Welcome to My Project Manager");
+});
+
 app.use('/api/auth', require('./routes/auth'));
-app.use('/api/users', checkToken, require('./routes/users'));
-
-// Middleware de verificación de token antes de rutas protegidas
-app.use('/api/projects', checkToken, require('./routes/projects'));
-app.use('/api/tasks', checkToken, require('./routes/tasks'));
-
-
-app.use('/api', apiProxy);
+app.use('/api/users', require('./routes/users'));
+app.use('/api/projects', require('./routes/projects'));
+app.use('/api/tasks', require('./routes/tasks'));
 
 // Enrutamiento para manejar rutas no definidas
 app.use('*', (req, res) => {
@@ -67,13 +51,13 @@ app.use('*', (req, res) => {
 });
 
 // Middleware para manejar rutas no definidas
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   console.log('Problemas en ruta no definida');
   next(createError(404));
 });
 
 // Middleware para manejar errores
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
