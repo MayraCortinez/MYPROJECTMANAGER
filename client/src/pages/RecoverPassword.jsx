@@ -11,7 +11,7 @@ export const RecoverPassword = () => {
   const [tokenChecked, setTokenChecked] = useState(false);
   const [send, setSend] = useState(false);
   const navigate = useNavigate();
-  const [cookies, setCookie] = useCookies(['cookie-token']);  // Utiliza el hook useCookies
+  const [cookies, setCookie] = useCookies(['cookie-token']);  
 
   const handleShowAlert = (msg) => {
     setAlert({

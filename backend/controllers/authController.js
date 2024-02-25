@@ -4,7 +4,7 @@ const createJWT = require('../helpers/createJWT');
 const createToken = require('../helpers/createToken');
 const errorResponse = require('../helpers/errorResponse');
 const { confirmRegister, forgetPassword } = require('../helpers/sendEmails');
-
+const cookie = require('cookie');
 
 
 module.exports = {
