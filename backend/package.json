@@ -12,7 +12,7 @@
     "client-dev": "cd client && npm run dev",
     "client-build": "cd client && npm run build",
     "dev": "concurrently \"npm run server-dev \" \" npm run client-dev\"",
-    "send-mail-test": "node sendMailTest.js"
+    "send-mail-test": "node sendEmails.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
