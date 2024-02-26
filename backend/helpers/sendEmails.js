@@ -20,7 +20,6 @@ module.exports = {
         const {name, email} = user;
 
         try {
-
             const info = await transport.sendMail({
                 from : 'cortinezmayra89@gmail.com',
                 to : email,
@@ -40,7 +39,7 @@ module.exports = {
 
     forgetPassword : async (user) => {
         
-        const {name, email, token} = user
+        const {name, email} = user
 
         try {
 
