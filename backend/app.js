@@ -35,6 +35,10 @@ const apiProxy = createProxyMiddleware('/api', {
 
 app.use(apiProxy);
 
+// Middleware para manejo de cookies
+app.use(cookieParser());
+app.use(cookieMiddleware);
+
 app
   .use(logger('dev'))
   .use(express.json())
