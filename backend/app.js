@@ -36,8 +36,9 @@ app.use(cookieParser());
 app.use(cookieMiddleware);
 
 // Rutas
-app.get('/api/', (req, res) => {
+app.get('/', (req, res) => {
   res.send("Welcome to My Project Manager");
+  console.log('backend succesfully')
 });
 
 app.use('/api/auth', require('./routes/auth'));
