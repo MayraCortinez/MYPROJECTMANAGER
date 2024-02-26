@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   base: '/',
   plugins: [react()],
- /*  server: {
+  server: {
     proxy: {
       '/api': {
         target: 'https://backend-kappa-one-37.vercel.app',
@@ -14,5 +14,5 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
     },
-  } */
+  }
 });

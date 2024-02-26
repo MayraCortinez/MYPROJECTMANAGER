@@ -24,11 +24,11 @@ app.options('/api/auth/send-token', cors(corsOptions));
 
 connectDB();
 
-//Configuración del proxy para redirigir solicitudes al backend
+/* // Configuración del proxy para redirigir solicitudes al backend
 app.use(createProxyMiddleware('/api', {
   target: 'https://backend-kappa-one-37.vercel.app',
   changeOrigin: true,
-})); 
+})); */
 
 // Middleware para manejo de cookies
 app.use(cookieParser());
