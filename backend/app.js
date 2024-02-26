@@ -1,12 +1,8 @@
-console.log('Iniciando aplicación');
-
-require('dotenv').config();
-
-const path = require('path');
-const createError = require('http-errors');
 const express = require('express');
-const logger = require('morgan');
 const connectDB = require('./database/config');
+const path = require('path');
+const logger = require('morgan');
+const createError = require('http-errors');
 const cookieParser = require('cookie-parser');
 const cookieMiddleware = require('./middlewares/cookieMiddleware');
 const { createProxyMiddleware } = require('http-proxy-middleware');
@@ -14,7 +10,12 @@ const cors = require('cors');
 
 const app = express();
 
-app.use(cors());
+// Middleware de registro de solicitudes
+app.use(logger('dev'));
+
+// Middleware para manejo de cookies
+app.use(cookieParser());
+app.use(cookieMiddleware);
 
 // Configuración del proxy para redirigir solicitudes al backend
 const apiProxy = createProxyMiddleware('/api', {
@@ -22,30 +23,29 @@ const apiProxy = createProxyMiddleware('/api', {
   changeOrigin: true,
 });
 
-app.use('/', apiProxy);
-
-
-// Middleware de registro de solicitudes
-app.use(logger('dev'));
+app.use(apiProxy);
 
 // Middleware para procesar datos JSON y datos codificados en URL
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Middleware de manejo de cookies
-app.use(cookieParser());
-app.use(cookieMiddleware);
+// Cors para permitir solicitudes desde el frontend
+app.use(cors());
+
+app.options('/api/auth/send-token', cors());
+const checkToken = require('./middlewares/checkToken');
+connectDB();
 
 // Rutas
 app.get('/', (req, res) => {
-  res.send("Welcome to My Project Manager");
-  console.log('backend succesfully')
+  res.send('Welcome to My Project Manager');
+  console.log('Backend successfully accessed');
 });
 
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/users', require('./routes/users'));
-app.use('/api/projects', require('./routes/projects'));
-app.use('/api/tasks', require('./routes/tasks'));
+app.use('/api/projects', checkToken, require('./routes/projects'));
+app.use('/api/tasks', checkToken, require('./routes/tasks'));
 
 // Enrutamiento para manejar rutas no definidas
 app.use('*', (req, res) => {
@@ -53,13 +53,13 @@ app.use('*', (req, res) => {
 });
 
 // Middleware para manejar rutas no definidas
-app.use((req, res, next) => {
+app.use(function(req, res, next) {
   console.log('Problemas en ruta no definida');
   next(createError(404));
 });
 
 // Middleware para manejar errores
-app.use((err, req, res, next) => {
+app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -72,3 +72,4 @@ app.use((err, req, res, next) => {
 });
 
 module.exports = app;
+

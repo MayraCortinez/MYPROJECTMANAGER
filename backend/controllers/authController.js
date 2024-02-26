@@ -45,8 +45,8 @@ module.exports = {
 
             const userStore = await user.save();
 
-
             console.log("Usuario registrado con éxito. Enviando correo de confirmación...");
+            
             confirmRegister ({
                 name : userStore.name,
                 email : userStore.email,
