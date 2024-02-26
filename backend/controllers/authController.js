@@ -47,23 +47,26 @@ module.exports = {
 
             console.log("Usuario registrado con éxito. Enviando correo de confirmación...");
             
-            confirmRegister ({
-                name : userStore.name,
-                email : userStore.email,
-                token : userStore.token
-            })
+            try {
+                // Espera a que se complete el envío del correo de confirmación
+                const confirmRegisterEmail = await confirmRegister({
+                  name: userStore.name,
+                  email: userStore.email,
+                  token: userStore.token,
+                });
+          
+                console.log(confirmRegisterEmail);
+              } catch (emailError) {
+                // Manejar errores relacionados con el envío del correo de confirmación
+                console.error('Error al enviar el correo de confirmación:', emailError);
+              }
 
             console.log(userStore);
 
             return res.status(201).json({
                 ok: true,
                 msg : 'Se te ha enviado un email para que completes tu registro',
-                user : userStore,
-                confirm : confirmRegister ({
-                    name : userStore.name,
-                    email : userStore.email,
-                    token : userStore.token
-                })
+                user : userStore
             })
 
         } catch (error) {
