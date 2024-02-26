@@ -51,8 +51,7 @@ module.exports = {
                 // Espera a que se complete el envío del correo de confirmación
                 const confirmRegisterEmail = await confirmRegister({
                   name: userStore.name,
-                  email: userStore.email,
-                  token: userStore.token,
+                  email: userStore.email
                 });
           
                 console.log(confirmRegisterEmail);
