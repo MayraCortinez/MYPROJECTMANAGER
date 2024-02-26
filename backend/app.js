@@ -14,16 +14,14 @@ const checkToken = require('./middlewares/checkToken');
 const cookieParser = require('cookie-parser');
 const cookieMiddleware = require('./middlewares/cookieMiddleware');
 
-const whiteList = [process.env.URL_FRONTEND, process.env.URL_BACKEND];
-/* const corsOptions = {
-  origin : function (origin, cb) {
-    if (whiteList.includes(origin)){
-      cb(null, true)
-    }else{
-      cb(new Error('Error de Cors'))
-    }
-  }
-} */
+const corsOptions = {
+  origin: 'https://client-six-bice.vercel.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+};
+
+
 
 connectDB();
 
@@ -41,7 +39,7 @@ app
   .use(logger('dev'))
   .use(express.json())
   .use(express.urlencoded({ extended: false }))
-  .use(cors())
+  .use(cors(corsOptions));
 
 
 // Routes

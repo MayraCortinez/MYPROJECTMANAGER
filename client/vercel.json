@@ -1,3 +1,17 @@
 {
-  "version": 2
-}
+  "version": 2,
+  "routes": [
+      {
+        "src": "/api/(.*)",
+        "dest": "https://backend-kappa-one-37.vercel.app/api/$1",
+        "methods": ["GET", "POST", "PUT", "DELETE"],
+        "headers": {
+          "Access-Control-Allow-Origin": "https://client-six-bice.vercel.app",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
+          "Access-Control-Allow-Headers": "Content-Type, Authorization",
+          "Access-Control-Allow-Credentials": "true"
+        }
+      }
+    ]
+  }
+  
