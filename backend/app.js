@@ -9,7 +9,6 @@ const app = express();
 
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const cors = require('cors');
-app.options('/api/auth/send-token', cors());
 const checkToken = require('./middlewares/checkToken');
 const cookieParser = require('cookie-parser');
 const cookieMiddleware = require('./middlewares/cookieMiddleware');
@@ -20,7 +19,7 @@ const corsOptions = {
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
 };
-
+app.options('/api/auth/send-token', cors(corsOptions));
 
 
 connectDB();
