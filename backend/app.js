@@ -27,13 +27,11 @@ const whiteList = [process.env.URL_FRONTEND, process.env.URL_BACKEND];
 
 connectDB();
 
-// Configuración del proxy para redirigir solicitudes al backend
-const apiProxy = createProxyMiddleware('/api', {
+/* // Configuración del proxy para redirigir solicitudes al backend
+app.use(createProxyMiddleware('/api', {
   target: 'https://backend-kappa-one-37.vercel.app',
   changeOrigin: true,
-});
-
-app.use(apiProxy);
+})); */
 
 // Middleware para manejo de cookies
 app.use(cookieParser());
