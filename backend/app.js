@@ -17,7 +17,7 @@ const app = express();
 app.use(cors());
 
 // Configuración del proxy para redirigir solicitudes al backend
-const apiProxy = createProxyMiddleware('/api', {
+const apiProxy = createProxyMiddleware('/', {
   target: 'https://backend-kappa-one-37.vercel.app',
   changeOrigin: true,
 });
