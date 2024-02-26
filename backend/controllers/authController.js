@@ -54,10 +54,11 @@ module.exports = {
                   email: userStore.email
                 });
           
-                console.log(confirmRegisterEmail);
+                console.log('Correo de confirmación enviado:', confirmRegisterEmail);
               } catch (emailError) {
                 // Manejar errores relacionados con el envío del correo de confirmación
                 console.error('Error al enviar el correo de confirmación:', emailError);
+                throw createError(500, 'Error al enviar el correo de confirmación');
               }
 
             console.log(userStore);
