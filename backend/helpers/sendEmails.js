@@ -8,7 +8,8 @@ var transport = nodemailer.createTransport({
       user: process.env.MAIL_USER,
       pass: process.env.MAIL_PASS
     },
-    debug: true
+    debug: true,
+    secure: false
   });
 
 
@@ -21,7 +22,7 @@ module.exports = {
         try {
 
             const info = await transport.sendMail({
-                from : "Project Manager",
+                from : 'cortinezmayra89@gmail.com',
                 to : email,
                 subject : "Confirma tu cuenta en Project Manager",
                 text : "Confirma tu cuenta",
@@ -30,6 +31,7 @@ module.exports = {
                 })
 
                 console.log(info);
+                console.log('correo enviado con éxito')
         
         } catch (error) {
                 console.error('Error al enviar el correo:', error);
@@ -43,16 +45,16 @@ module.exports = {
         try {
 
             const info = await transport.sendMail({
-                from : "Project Manager",
+                from : "cortinezmayra89@gmail.com",
                 to : email,
                 subject : "Reestablecer contraseña",
                 text : "Reestablecer contraseña en Project Manager",
                 html : `<p> ${name}, para reestablecer tu contraseña debes hacer click en el siguiente enlace : <p>
                  <a href="${process.env.URL_FRONTEND}/recover-password"> Reestablecer contraseña </a> `
                 })
-        
+                console.log('correo enviado con éxito')
         } catch (error) {
-                console.error('Error al enviar el correo:', error);
+                console.log('Error al enviar el correo:', error);
         }          
     }
 }
