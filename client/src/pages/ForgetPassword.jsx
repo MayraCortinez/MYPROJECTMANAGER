@@ -24,6 +24,8 @@ export const ForgetPassword = () => {
                 email,
                 });
 
+            console.log("Respuesta del servidor:", data);
+
                 Swal.fire({
                     position: 'center',
                     icon: 'success',

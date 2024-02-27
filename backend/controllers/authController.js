@@ -158,12 +158,16 @@ module.exports = {
             
             user.token = token;
 
+            console.log("Antes de configurar la cookie");
+
             // Configura la cookie con el token
             const cookieOptions = {
             httpOnly: true,
             };
   
             res.setHeader('Set-Cookie', cookie.serialize('cookie-token', token, cookieOptions));
+
+            console.log("Después de configurar la cookie");
 
             const userStore = await user.save();
 
@@ -172,6 +176,8 @@ module.exports = {
                 email: userStore.email,
                 token : userStore.token
             })
+
+            console.log("Valor de la cookie:", token);
 
             return res.status(200).json({
                 ok: true,
