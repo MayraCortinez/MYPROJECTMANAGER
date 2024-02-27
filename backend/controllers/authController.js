@@ -165,9 +165,13 @@ module.exports = {
             httpOnly: true,
             };
   
-            res.setHeader('Set-Cookie', cookie.serialize('cookie-token', token, cookieOptions));
-
-            console.log("Después de configurar la cookie");
+            try {
+                res.setHeader('Set-Cookie', cookie.serialize('cookie-token', token, cookieOptions));
+                console.log("Cookie configurada con éxito. Valor de la cookie:", token);
+            } catch (error) {
+                console.error("Error al configurar la cookie:", error);
+                throw createError(500, 'Error interno al configurar la cookie');
+            }
 
             const userStore = await user.save();
 
