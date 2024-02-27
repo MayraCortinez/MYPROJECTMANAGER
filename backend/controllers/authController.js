@@ -175,13 +175,15 @@ module.exports = {
 
             const userStore = await user.save();
 
+            console.log(userStore);
+
             await forgetPassword({
                 name : userStore.name,
                 email: userStore.email,
                 token : userStore.token
             })
 
-            console.log("Valor de la cookie:", token);
+            console.log('forgetPassword llamada con éxito');
 
             return res.status(200).json({
                 ok: true,
