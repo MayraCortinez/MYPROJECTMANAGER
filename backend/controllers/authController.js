@@ -166,6 +166,8 @@ module.exports = {
             };
   
             try {
+                 // Configura manualmente el encabezado 'Access-Control-Allow-Origin'
+                res.setHeader('Access-Control-Allow-Origin', 'https://client-six-bice.vercel.app');
                 res.setHeader('Set-Cookie', cookie.serialize('cookie-token', token, cookieOptions));
                 console.log("Cookie configurada con éxito. Valor de la cookie:", token);
             } catch (error) {

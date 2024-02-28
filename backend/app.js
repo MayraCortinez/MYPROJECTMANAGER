@@ -19,6 +19,12 @@ const corsOptions = {
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
 };
+
+// Middleware para manejo de cookies
+app.use(cookieParser());
+app.use(cookieMiddleware);
+
+// Configuración de CORS
 app.use(cors(corsOptions));
 
 app.options('/api/auth/send-token', cors(corsOptions));
@@ -33,9 +39,7 @@ app.use(createProxyMiddleware('/api', {
   changeOrigin: true,
 })); */
 
-// Middleware para manejo de cookies
-app.use(cookieParser());
-app.use(cookieMiddleware);
+
 
 app
   .use(logger('dev'))
