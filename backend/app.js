@@ -22,7 +22,7 @@ const corsOptions = {
 
 // Middleware para manejo de cookies
 app.use(cookieParser());
-app.use(cookieMiddleware);
+
 
 // Configuración de CORS
 app.use(cors(corsOptions));

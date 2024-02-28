@@ -161,19 +161,21 @@ module.exports = {
             console.log("Antes de configurar la cookie");
 
             // Configura la cookie con el token
-            const cookieOptions = {
+        const cookieOptions = {
             httpOnly: true,
-            };
-  
-            try {
-                 // Configura manualmente el encabezado 'Access-Control-Allow-Origin'
-                res.setHeader('Access-Control-Allow-Origin', 'https://client-six-bice.vercel.app');
-                res.setHeader('Set-Cookie', cookie.serialize('cookie-token', token, cookieOptions));
-                console.log("Cookie configurada con éxito. Valor de la cookie:", token);
-            } catch (error) {
-                console.error("Error al configurar la cookie:", error);
-                throw createError(500, 'Error interno al configurar la cookie');
-            }
+            maxAge: 60 * 60 * 1000, // Duración de una hora
+            secure: true, // Solo se transmitirá con conexiones seguras (https)
+            sameSite: 'strict', // No se enviará en peticiones cross-site (evita ataques CSRF)
+        };
+
+        try {
+            res.cookie('cookie-token', token, cookieOptions);
+            console.log("Cookie configurada con éxito. Valor de la cookie:", token);
+        } catch (error) {
+            console.error("Error al configurar la cookie:", error);
+            throw createError(500, 'Error interno al configurar la cookie');
+        }
+
 
             const userStore = await user.save();
 
