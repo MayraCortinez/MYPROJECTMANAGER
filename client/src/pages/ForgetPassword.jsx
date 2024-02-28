@@ -20,9 +20,12 @@ export const ForgetPassword = () => {
 
         try {
             setSend(true)
-            const {data} = await clientAxios.post('/api/auth/send-token',{
-                email,
-                });
+            const {data} = await clientAxios.post('/api/auth/send-token',
+                {
+                  email,
+                }, 
+                { credentials: 'include' }
+                );
 
             console.log("Respuesta del servidor:", data);
 
